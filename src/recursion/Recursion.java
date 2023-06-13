@@ -28,11 +28,85 @@ public class Recursion {
         //HashSet<String> set = new HashSet<>();
         //subsequence(str,0,set);
 
+        //String str= "abc";
+        //printPermutation(str,"");
+
+        //System.out.println(countPaths(0,0,3,3));
+        //System.out.println(placeTiles(4,2));
+
+        System.out.println(callGuests(4));
     }
+
+    //print all the subsets of a set of first n natural numbers
+
+
+
+
+    //place Tiles of size 1*m in a floor of size n*m
+    public static int placeTiles(int n, int m){
+        if (n==m){
+            return 2;
+        }
+        if (n<m){
+            return 1;
+        }
+        int vertPlacements = placeTiles(n-m, m);
+        int horPlacements = placeTiles(n-1, m);
+
+        return vertPlacements+horPlacements;
+    }
+
+
+    //find the number if ways in which you can invite n people to your party,single or in pairs
+    public static int callGuests(int n){
+
+        if (n<=1){
+            return 1;
+        }
+        //single
+        int ways1 = callGuests(n-1);
+
+        //pair
+        int ways2 = (n-1)* callGuests(n-2);
+
+        return ways1+ways2;
+    }
+    //count total paths in a maze to move from (0,0) to (n,m)
+    public static int countPaths(int i, int j, int n, int m){
+        if (i==n || j==m){
+            return 0;
+        }
+        if (i==n-1 && j==m-1){
+            return 1;
+        }
+
+        //move down
+        int downPaths  = countPaths(i+1, j, n, m);
+
+        //move right
+        int rightPaths = countPaths(i,j+1,n,m);
+
+        return downPaths+rightPaths;
+
+    }
+
 
     //print all permutations of a string
     //"abc" -> abc, acb, bac, bca, cab, cba
+    public static void printPermutation(String str, String permutation){
 
+        if (str.length()==0){
+            System.out.println(permutation);
+            return;
+        }
+
+        for (int i=0; i<str.length(); i++){
+            char currChar = str.charAt(i);
+            //"abc" -> "ab"
+            String newStr = str.substring(0, i) + str.substring(i+1);
+            printPermutation(newStr,permutation+currChar);
+        }
+    }
 
 
 
