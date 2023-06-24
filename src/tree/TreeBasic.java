@@ -21,19 +21,34 @@ public class TreeBasic {
 
 
         //preOrderTraversal(treeNode1);
+        //preOrderTraversalArr(treeNode1);
+
         //inOrderTraversal(treeNode1);
+
         //postOrderTraversal(treeNode1);
 
         //System.out.println(size(treeNode1));
-        System.out.println(height(treeNode4));
+        //System.out.println(height(treeNode4));
+
     }
+
+    static ArrayList<Integer> arrayList = new ArrayList<>();
 
 
     public static void preOrderTraversal(TreeNode root){
         if (root == null) {
             return;
         }
-        System.out.println(root.data);
+        System.out.print(root.data);
+        preOrderTraversal(root.left);
+        preOrderTraversal(root.right);
+    }
+    public static void preOrderTraversalArr(TreeNode root){
+        if (root == null) {
+            return;
+        }
+
+        arrayList.add(root.data);
         preOrderTraversal(root.left);
         preOrderTraversal(root.right);
     }
@@ -43,7 +58,7 @@ public class TreeBasic {
             return;
         }
         inOrderTraversal(root.left);
-        System.out.println(root.data);
+        System.out.print(root.data);
         inOrderTraversal(root.right);
 
     }
