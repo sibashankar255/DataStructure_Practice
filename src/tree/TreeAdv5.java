@@ -72,6 +72,8 @@ public class TreeAdv5 {
         //return  check(root.left, k-root.data) || check(root.right,k-root.data) ? 1 :0;
     }
 
+    //fill the next pointer for each node in binary tree
+    
 
 
 
