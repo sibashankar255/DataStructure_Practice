@@ -110,7 +110,7 @@ public class ArrayProblems {
     //prices = [7,1,5,3,6,4]
     public static int buySellStocks(int[] prices){
         int buy_price =prices[0];
-        int max_profit =0;
+        int max_profit =0; 
         for (int i=1; i<prices.length;i++){
             if (buy_price<prices[i]){
                 int profit = prices[i]-buy_price;
@@ -237,6 +237,15 @@ public class ArrayProblems {
     //18.Merge Overlapping Intervals
 
     //all subarray, subset, subsequences problems
+    //two pointer
+    //2D roblems
+    //prefix sum
+    //carry forward
+    //sliding window
+
+    //bit manipulation
+    //hashing
+    //recursion
 
 
 
