@@ -8,7 +8,7 @@ public class LinkedListInfo {
         Node node2 = new Node(20);
         node1.next = node2;
 
-        Node node3 = new Node(30);
+        Node node3 = new Node(60);
         node2.next = node3;
 
         Node node4 = new Node(40);
@@ -33,6 +33,8 @@ public class LinkedListInfo {
         //printLinkedList(deleteKthNode(node1, 2));
 
         //System.out.println(searchNode(node1,99));
+
+        System.out.println(checkSorted(node1));
 
     }
 
@@ -69,11 +71,11 @@ public class LinkedListInfo {
 
     //length of the linked list
     public static int lengthOfList(Node A){
-        int count=1;
+        int count=0;
         Node temp = A;
-        while (temp.next!=null){
+        while (temp!=null){
             temp = temp.next;
-            count++;
+            ++count;
         }
         return count;
     }
@@ -153,12 +155,70 @@ public class LinkedListInfo {
     }
 
     //reverse the linked list
-//    public static Node reverseLinkedList(Node A){
-//        if (A==null || A.next==null){
-//            return A;
-//        }
-//
-//    }
+    public static Node reverseLinkedList(Node A){
+        Node prev = null;
+        Node curr = A;
+        Node next = curr.next;
+        while (curr != null){
+            curr.next=prev;
+            prev=curr;
+            curr= next;
+            if (curr!=null){
+                next=curr.next;
+            }
+        }
+        return prev;
+    }
+
+
+    //kth element
+    public static int kthElement(Node head, int k){
+        int size=lengthOfList(head);
+        if (head==null || k>size-1){
+            return 0;
+        }
+        if (k==0){
+            return head.data;
+        }
+        for (int i=1; i<=k; i++){
+            head = head.next;
+            if (i==k){
+                return head.data;
+            }
+        }
+        return 0;
+    }
+
+    //check sorted linked list
+    public static String checkSorted(Node head){
+        Node curr = head;
+        while (curr != null && curr.next!= null){
+            if (curr.data > curr.next.data){
+                return "false";
+            }
+            curr=curr.next;
+        }
+        return "true";
+    }
+
+    //compare 2 linked list
+    public static int compare(Node A, Node B){
+        int aSize =lengthOfList(A);
+        int bSize =lengthOfList(B);
+        if (aSize != bSize){
+            return 0;
+        }
+        while (A.next != null){
+            Node x=A;
+            Node y=B;
+            if (x.data != y.data){
+                return 0;
+            }
+            A=A.next;
+            B=B.next;
+        }
+        return 1;
+    }
 
 
 }
