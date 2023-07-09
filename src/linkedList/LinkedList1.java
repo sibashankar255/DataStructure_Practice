@@ -1,6 +1,8 @@
 package linkedList;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class LinkedList1 {
 
@@ -28,8 +30,9 @@ public class LinkedList1 {
 
 
 
-        printLinkedList(reorderList(node1));
+        //printLinkedList(reorderList(node1));
         //printLinkedList(reorderList());
+        //printLinkedList(reverse(node1));
 
 
     }
@@ -37,6 +40,27 @@ public class LinkedList1 {
 
     //given a linked list where every node has a random pointer along with next pointer.
     // create a deep copy of this list
+
+//    public static ListNode duplicate(ListNode head){
+//        ListNode curr = head;
+//
+//        //inserting new node in between
+//        while (curr!=null){
+//            ListNode temp = curr.next;
+//            curr.next = new ListNode(curr.val);
+//            curr.next.next=temp;
+//            curr=temp;
+//        }
+//        curr =head;
+//
+//        //setting random pointers of new nodes
+//        while (curr!=null){
+//
+//        }
+//
+//        return curr;
+//    }
+
 
     //Remove Nth Node from List End
     //fast and slow pointer
@@ -132,12 +156,13 @@ public class LinkedList1 {
 
     public static ListNode reverse(ListNode head){
         ListNode prev =null;
-        ListNode curr_node=head;
-        while (curr_node != null){
-            ListNode next_node = curr_node.next;
-            curr_node.next=prev;
-            prev=curr_node;
-            curr_node=next_node;
+        ListNode curr = head;
+
+        while (curr !=null){
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev=curr;
+            curr=temp;
         }
         return prev;
     }
@@ -169,8 +194,98 @@ public class LinkedList1 {
         if (carry==1){
             ptr.next=new ListNode(1);
         }
-        return result;
+        return result.next;
+    }
+
+    //Intersection of Linked Lists
+    public static ListNode intersection(ListNode A, ListNode B){
+        int lenA = lengthOfList(A);
+        int lenB = lengthOfList(B);
+
+        while (lenA>lenB){
+            lenA--;
+            A= A.next;
+        }
+        while (lenB>lenA){
+            lenB--;
+            B=B.next;
+        }
+
+        while (A != B){
+            A=A.next;
+            B=B.next;
+        }
+
+        return A;
+
+    }
+    public static int lengthOfList(ListNode A){
+        int count=1;
+        ListNode temp = A;
+        while (temp.next!=null){
+            temp = temp.next;
+            count++;
+        }
+        return count;
+    }
+
+    //Partition List
+    public ListNode partition(ListNode head, int B) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        // Create two separate lists for nodes less than B and nodes greater than or equal to B
+        ListNode lessHead = new ListNode(0);
+        ListNode greaterHead = new ListNode(0);
+        ListNode lessTail = lessHead;
+        ListNode greaterTail = greaterHead;
+
+        ListNode current = head;
+
+        while (current != null) {
+            if (current.val < B) {
+                lessTail.next = current;
+                lessTail = lessTail.next;
+            } else {
+                greaterTail.next = current;
+                greaterTail = greaterTail.next;
+            }
+            current = current.next;
+        }
+
+        // Connect the two lists
+        lessTail.next = greaterHead.next;
+        greaterTail.next = null;
+
+        return lessHead.next;
+    }
+
+    //Flatten a linked list
+    public static ListNodeF flatten(ListNodeF head){
+        ListNodeF curr = head;
+        Queue<ListNodeF> q = new LinkedList<>();
+
+        while (curr !=null){
+            if (curr.right ==null){
+                curr.right = q.poll();
+            }
+            if (curr.down != null){
+                q.add(curr.down);
+            }
+            curr=curr.right;
+        }
+        return head;
     }
 
 
+}
+
+class ListNodeF {
+    int val;
+    ListNodeF right, down;
+    ListNodeF(int x) {
+        val = x;
+        right = down = null;
+    }
 }

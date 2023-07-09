@@ -8,18 +8,17 @@ public class LInkedListAdv2 {
         Node node2 = new Node(2);
         node1.next = node2;
 
-        Node node3 = new Node(3);
+        Node node3 = new Node(2);
         node2.next = node3;
 
-        Node node4 = new Node(1);
-        node3.next = node4;
 
-        printLinkedList(reverseList(node1));
+
+        //printLinkedList(reverseList(node1));
 
 //        Node node5 = new Node(1);
 //        node4.next = node5;
 
-        //System.out.println(palindrome(node1));
+        System.out.println(palindrome(node1));
 
 //        Node node6 = new Node(2);
 //        node5.next = node6;
@@ -29,6 +28,8 @@ public class LInkedListAdv2 {
 //
 //        Node node8 = new Node(2);
 //        node7.next = node8;
+
+
 
         //System.out.println(longestPalindrome(node1));
 
@@ -51,15 +52,6 @@ public class LInkedListAdv2 {
 
         Node secondHalf = reverseList(findMiddle(head).next);
         Node firstHalf = head;
-
-
-//        while (secondHalf != null) {
-//            if (firstHalf.val != secondHalf.val) {
-//                return false;
-//            }
-//            firstHalf = firstHalf.next;
-//            secondHalf = secondHalf.next;
-//        }
 
         while (secondHalf.next !=null && firstHalf.next!=null){
             if(firstHalf.data != secondHalf.data){
