@@ -7,21 +7,22 @@ import java.util.PriorityQueue;
 
 public class ArrayProblems {
     public static void main(String[] args) {
-        int arr[] = { 1000, 11, 445, 1, 330, 3000,6 };
+        //int arr[] = { 1000, 11, 445, 1, 330, 3000,6 };
         //System.out.println(minMaxDiff(arr));
 
 //        for (int a : reverse(arr)){
 //            System.out.println(a);
 //        }
-        int arr1[] = {1,2, 3,3,5};
+        //int arr1[] = {1,2, 3,3,5};
 //        for (int a : repeatMissing(arr1)){
 //            System.out.println(a);
 //        }
 
         //System.out.println(kthLargestElement(arr,2));
 
-        int arr2[] ={4,2,0,3,2,5};
-        System.out.println(trapWater(arr2));
+        //int arr2[] ={4,2,0,3,2,5};
+        int[] A={4,2,1,5,6,3,2,4,2};
+        System.out.println(trapWater(A));
     }
 
     //1.minimum and maximum elements of an array
@@ -181,7 +182,6 @@ public class ArrayProblems {
             int waterLevel =Math.min(leftMax[i],rightMax[i]);
             trapWater += waterLevel-height[i];
         }
-
         return trapWater;
     }
 

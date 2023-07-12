@@ -1,6 +1,8 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class TreeAdv1 {
@@ -66,6 +68,51 @@ public class TreeAdv1 {
         root.left = buildTreeRecursive(inorder, postorder, inStart, rootIndex - 1, postStart, postStart + leftSubtreeSize - 1);
         root.right = buildTreeRecursive(inorder, postorder, rootIndex + 1, inEnd, postEnd - rightSubtreeSize, postEnd - 1);
 
+        return root;
+    }
+
+    public static ArrayList<Integer> serialize(TreeNode root){
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        if (root==null){
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            if (node==null){
+                arrayList.add(-1);
+                continue;
+            }
+            arrayList.add(node.data);
+            queue.add(node.left);
+            queue.add(node.right);
+        }
+        return arrayList;
+    }
+
+    public static TreeNode deserialize(ArrayList<Integer> arrayList){
+        if (arrayList.isEmpty()){
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode root = new TreeNode(arrayList.get(0));
+        queue.add(root);
+
+        for (int i=1; i<arrayList.size(); i++){
+            TreeNode parent = queue.poll();
+            if (!arrayList.get(i).equals(-1)){
+                TreeNode left = new TreeNode(arrayList.get(i));
+                parent.left=left;
+                queue.add(left);
+            }
+            if (!arrayList.get(++i).equals(-1)){
+                TreeNode right = new TreeNode(arrayList.get(i));
+                parent.right = right;
+                queue.add(right);
+            }
+        }
         return root;
     }
 
