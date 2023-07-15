@@ -5,27 +5,28 @@ import java.util.Stack;
 
 public class TreeBasic {
     public static void main(String[] args) {
-        TreeNode treeNode1 = new TreeNode(10);
-        TreeNode treeNode2 = new TreeNode(20);
-        TreeNode treeNode3 = new TreeNode(30);
+        TreeNode treeNode1 = new TreeNode(1);
+        TreeNode treeNode2 = new TreeNode(2);
+        TreeNode treeNode3 = new TreeNode(3);
         treeNode1.left=treeNode2;
         treeNode1.right= treeNode3;
-        TreeNode treeNode4 = new TreeNode(40);
-        TreeNode treeNode5 = new TreeNode(50);
+        TreeNode treeNode4 = new TreeNode(4);
+        TreeNode treeNode5 = new TreeNode(5);
         treeNode2.left=treeNode4;
         treeNode2.right=treeNode5;
-        TreeNode treeNode6 = new TreeNode(60);
-        TreeNode treeNode7 = new TreeNode(70);
+        TreeNode treeNode6 = new TreeNode(6);
+        TreeNode treeNode7 = new TreeNode(7);
         treeNode3.left=treeNode6;
         treeNode3.right=treeNode7;
 
 
-        //preOrderTraversal(treeNode1);
-        //preOrderTraversalArr(treeNode1);
+//        preOrderTraversal(treeNode1);
+//        preOrderTraversalArr(treeNode1);
+
 
         //inOrderTraversal(treeNode1);
 
-        //postOrderTraversal(treeNode1);
+        postOrderTraversal(treeNode1);
 
         //System.out.println(size(treeNode1));
         //System.out.println(height(treeNode4));
