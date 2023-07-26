@@ -1,10 +1,13 @@
 package Heap;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class HeapBasic {
+    public static PriorityQueue<Integer> minHeap= new PriorityQueue<>();
+    public static PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
     public static void main(String[] args) {
         // Create a PriorityQueue with Integer elements and a custom comparator
         PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
@@ -15,8 +18,15 @@ public class HeapBasic {
         pq.offer(8);
 
         // Retrieve the maximum element
-        int maxElement = pq.peek();
-        System.out.println("Maximum element: " + maxElement);
+//        int maxElement = pq.peek();
+//        System.out.println("Maximum element: " + maxElement);
+//
+        int[] A={1, 2, 5, 4, 3};
+        int[]  B={5, 17, 100, 11};
+
+        for (int i: streamMedian(B)) {
+            System.out.println(i);
+        }
 
     }
 
@@ -128,6 +138,44 @@ public class HeapBasic {
     // B = {3 8 2 5 10 1} -> median {1 2 3 5 8 10}
     // IP -> 9  8  15  20  22  17  12  5  1  3 ......
     // OP -> 9 8.5  9  12  15  16  15
+
+    public static void insertNum(int num){
+        if (maxHeap.isEmpty() || maxHeap.peek()>=num){
+            maxHeap.offer(num);
+        }else {
+            minHeap.offer(num);
+        }
+
+//        if (maxHeap.size() >minHeap.size()+1){
+//            minHeap.add(maxHeap.poll());
+//        }else {
+//            maxHeap.add(minHeap.poll());
+//        }
+        balancingHeaps();
+
+
+    }
+
+    public static void balancingHeaps(){
+        if(maxHeap.size() - minHeap.size() > 1) minHeap.offer(maxHeap.poll());
+        else if(minHeap.size() - maxHeap.size() > 1) maxHeap.offer(minHeap.poll());
+
+    }
+    public static int findMedian(){
+        if (maxHeap.size() == minHeap.size()){
+            return maxHeap.peek()/2 + minHeap.peek()/2;
+        }
+        return maxHeap.peek();
+    }
+    public static int[] streamMedian(int[] arr){
+        int[] ans = new int[arr.length];
+
+        for (int i=0; i<arr.length; i++){
+            insertNum(arr[i]);
+            ans[i] = findMedian();
+        }
+        return ans;
+    }
 
 
 

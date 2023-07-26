@@ -9,8 +9,31 @@ public class RecursionBasic {
 //        int[] a ={1,2,3,4,5};
 //        System.out.println(isSorted(a,0));
 
-        System.out.println(tilingProb(5));
+//        System.out.println(tilingProb(5));
+
+        System.out.println(isPalindrome("axbba",0,3));
     }
+
+    //palindrome
+    public static boolean isPalindrome(String string,int l,int r){
+        if (l>=r){
+            return true;
+        }
+        if (string.charAt(l) != string.charAt(r)){
+            return false;
+        }
+        return isPalindrome(string,l+1,r-1);
+    }
+
+    //subsequences of a string
+    public int subSequence(String s){
+
+
+        return 0;
+    }
+
+    //permutation of a string
+
 
     public static void print(int x){
         if (x==1){
