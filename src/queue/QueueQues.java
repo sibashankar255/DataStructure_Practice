@@ -54,7 +54,6 @@ public class QueueQues {
     public static int[] slidingWindow(int[] A, int B){
         Deque<Integer> deque = new ArrayDeque<>();
         int[] res = new int[A.length];
-
         int i;
         for (i=0; i<B; i++){
             while (!deque.isEmpty() && A[i] >= A[deque.peekLast()]){
@@ -64,14 +63,10 @@ public class QueueQues {
         }
         for (; i<A.length; ++i){
             res[i] = A[deque.peek()];
-
             while( (!deque.isEmpty()) && deque.peek()<=i-B ){
-
                 deque.removeFirst();
-
                 while( (!deque.isEmpty()) && A[i]>=A[deque.peekLast()]){
                     deque.removeLast();
-
                     deque.addLast(i);
                 }
             }
@@ -82,31 +77,45 @@ public class QueueQues {
 
     //Reversing the first K elements of a Queue
     public static Queue<Integer> reverseQueue(int[] A, int B){
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < B; i++) {
             queue.offer(A[i]);
         }
-
         Stack<Integer> stack = new Stack<>();
-
         for (int i=0; i<B; i++){
             stack.push(queue.remove());
         }
         int y=stack.size();
-
-
         for (int i=0; i<B; i++){
             queue.add(stack.pop());
         }
-
         for (int i=0; i<A.length-y; i++){
             queue.add(queue.remove());
         }
-
-
         return queue;
+    }
 
 
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+
+        for (int i=0; i<k; i++){
+            queue.offer(nums[i]);
+        }
+
+        int[] ans = new int[nums.length-k+1];
+        ans[0]=queue.peek();
+        queue.remove(nums[0]);
+        int j=0;
+        for (int i=k; i<nums.length; i++){
+            queue.offer(nums[i]);
+            ans[++j]=queue.peek();
+
+            queue.remove(nums[j]);
+        }
+
+        return ans;
     }
 
 }

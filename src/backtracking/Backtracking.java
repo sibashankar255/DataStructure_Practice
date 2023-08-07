@@ -1,5 +1,10 @@
 package backtracking;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Backtracking {
     //recursion-> solving a problem based on sub problems
     //backtracking-> trying all possibilities using recursion
@@ -34,6 +39,50 @@ public class Backtracking {
     //no of permutation -> n!
 
 
+
+    public ArrayList<ArrayList<Integer>> subsets(ArrayList<Integer> arr) {
+        Collections.sort(arr);
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        generateSubset(0,arr, new ArrayList<>(),result);
+        return result;
+    }
+
+    private void generateSubset(int index, ArrayList<Integer> arr, ArrayList<Integer> curr, ArrayList<ArrayList<Integer>> result) {
+        result.add(new ArrayList<>(curr));
+
+        for (int i=index; i<arr.size(); i++){
+            curr.add(arr.get(i));
+            generateSubset(i+1,arr,curr,result);
+            curr.remove(curr.size()-1);
+        }
+    }
+
+
+//    private void backTrack(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> arrayList, ArrayList<Integer> arr, int start) {
+//        result.add(new ArrayList<>(arrayList));
+//
+//        for (int i=start; i<arr.size(); i++){
+//            arrayList.add(arr.get(i));
+//
+//            backTrack(result,arrayList,arr,i+1);
+//
+//            arrayList.remove(arrayList.size()-1);
+//        }
+//    }
+
+    public ArrayList<ArrayList<Integer>> subsetsIterative(ArrayList<Integer> arr) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
+        for (int i=0; i<arr.size(); i++){
+            int n=result.size();
+            for (int j=0; j<n; j++){
+                ArrayList<Integer> temp = new ArrayList<>(result.get(j));
+                temp.add(arr.get(i));
+                result.add(temp);
+            }
+        }
+        return result;
+    }
 
 
 

@@ -26,8 +26,6 @@ public class LinkedListAdv {
         //printLinkedList(node1);
         //printLinkedList(deleteTheElement(node1,30));
         printLinkedList(reverseList(node1));
-
-
     }
 
 

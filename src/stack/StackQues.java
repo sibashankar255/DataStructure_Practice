@@ -109,6 +109,25 @@ public class StackQues {
         }
     }
 
+//    //largest area submatrix with all 1's
+//    public static int largestArea(int[][] a){
+//        int curRow[] =a[0];
+//        int maxAns=maxHistogram(curRow);
+//
+//        for (int i=1; i<a.length; i++){
+//            for (int j=0; j<a[0].length; j++){
+//                if (a[i][j]==1){
+//                    curRow[j] +=1;
+//                }else {
+//                    curRow[j]=0;
+//                }
+//            }
+//            int curAns= maxHistogram(curRow);
+//            maxAns = Math.max(maxAns,curAns);
+//        }
+//        return maxAns;
+//    }
+
     //largest rectangle in histogram
     public static int maxHistogram(int[] A){
         int maxAns =0;
@@ -146,7 +165,7 @@ public class StackQues {
                 stack.pop();
             }
             if (stack.isEmpty()){
-                ns[i]=9;
+                ns[i]= arr.length;
             }else {
                 ns[i]=stack.peek();
             }

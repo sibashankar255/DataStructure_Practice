@@ -27,7 +27,6 @@ public class TreeQues2 {
     //valid Binary Search Tree
     public static boolean validBST(TreeNode root){
         return isBst(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
-
     }
     public static boolean isBst(TreeNode node, int min, int max){
         if (node==null){return true;}
@@ -74,6 +73,7 @@ public class TreeQues2 {
 
     //Sorted Array To Balanced BST
     public TreeNode sortedArrayToBST(final int[] A) {
+
         return buildBST(A, 0, A.length-1);
     }
     public static TreeNode buildBST(int[] A, int start, int end){
@@ -89,35 +89,36 @@ public class TreeQues2 {
 
     //Search in BST
     public static boolean searchBST(TreeNode root, int x){
-        if (root==null){return false;}
-
-        if (root.data==x){return true;}
-
+        if (root==null){
+            return false;
+        }
+        if (root.data==x){
+            return true;
+        }
         if (root.data>x){
             return searchBST(root.left,x);
         }
         return searchBST(root.right,x);
-
     }
+
     //insertion in BST
     public static TreeNode insertBST(TreeNode root, int x){
         if (root==null){
             return new TreeNode(x);
         }
-
         if (root.data>x){
             root.left= insertBST(root.left,x);
         }else if (root.data<x){
             root.right= insertBST(root.right,x);
         }
-
         return root;
     }
 
     //deletion in BST
     public static TreeNode deleteBST(TreeNode root, int key){
-        if (root==null){return root;}
-
+        if (root==null){
+            return null;
+        }
         if (key<root.data){
             root.left = deleteBST(root.left,key);
         }else if (key>root.data){

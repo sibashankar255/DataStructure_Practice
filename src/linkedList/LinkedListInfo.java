@@ -61,7 +61,7 @@ public class LinkedListInfo {
             return newNode;
         }
         Node temp = A;
-        while (temp.next !=null){
+        while (temp.next != null){
             temp = temp.next;
         }
         Node newNode = new Node(val);

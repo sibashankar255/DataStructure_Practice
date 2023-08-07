@@ -85,7 +85,6 @@ public class LinkedList1 {
         Node meetPrev =meet;
         Node start =head;
 
-
         while (start != meet){
             start = start.next;
             meetPrev=meet;
@@ -173,7 +172,7 @@ public class LinkedList1 {
 
         int carry=0;
 
-        while (l1!=null || l2!=null){
+        while (l1 != null || l2 != null){
             int sum=0+carry;
 
             if (l1!=null){
@@ -188,8 +187,6 @@ public class LinkedList1 {
             sum = sum%10;
             ptr.next =new ListNode(sum);
             ptr=ptr.next;
-
-
         }
         if (carry==1){
             ptr.next=new ListNode(1);
@@ -201,7 +198,6 @@ public class LinkedList1 {
     public static ListNode intersection(ListNode A, ListNode B){
         int lenA = lengthOfList(A);
         int lenB = lengthOfList(B);
-
         while (lenA>lenB){
             lenA--;
             A= A.next;
@@ -210,14 +206,11 @@ public class LinkedList1 {
             lenB--;
             B=B.next;
         }
-
         while (A != B){
             A=A.next;
             B=B.next;
         }
-
         return A;
-
     }
     public static int lengthOfList(ListNode A){
         int count=1;
@@ -277,8 +270,6 @@ public class LinkedList1 {
         }
         return head;
     }
-
-
 }
 
 class ListNodeF {

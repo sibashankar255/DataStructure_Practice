@@ -42,8 +42,6 @@ public class TreeQues {
 
         System.out.println(diameter(treeNode1));
 
-
-
     }
 
     public static ArrayList<Integer> inorderTraversal(TreeNode root){
@@ -289,7 +287,6 @@ public class TreeQues {
 
     //difference between Odd and Even Levels
     public static int difference(TreeNode A){
-
         if (A == null) {
             return 0;
         }
@@ -347,6 +344,12 @@ public class TreeQues {
                  queue.add(new Pair(curr.hd+1,curr.node.right));
              }
          }
+
+        ArrayList<ArrayList<Integer>> array = new ArrayList<>();
+         for (Map.Entry<Integer,ArrayList<Integer>> entry : map.entrySet()){
+             array.add(entry.getValue());
+         }
+
         ArrayList<Integer> ans = new ArrayList<>();
 
         for (Map.Entry<Integer,ArrayList<Integer>> entry : map.entrySet()){
@@ -362,21 +365,13 @@ public class TreeQues {
 
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root);
-        boolean flag = false;
 
         int count=0;
         while (!queue.isEmpty()){
             int levelSize= queue.size();
             ArrayList<Integer> level = new ArrayList<>();
-            //Stack<Integer> reverseStack = new Stack<>();
             for (int i=0 ; i<levelSize;i++){
                 TreeNode node = queue.poll();
-
-//                if (flag){
-//                    //reverseStack.push(node.data);
-//                }else {
-//                    level.add(node.data);
-//                }
                 level.add(node.data);
 
                 if (node.left!=null){
@@ -385,11 +380,7 @@ public class TreeQues {
                 if (node.right!=null){
                     queue.add(node.right);
                 }
-                flag=!flag;
             }
-//            while (!reverseStack.isEmpty()){
-//                level.add(reverseStack.pop());
-//            }
             if (count%2==0){
                 zigzag.add(level);
             }else {
@@ -397,11 +388,8 @@ public class TreeQues {
                 zigzag.add(level);
             }
             count++;
-
         }
-
         return zigzag;
-
     }
 
 
@@ -441,7 +429,8 @@ public class TreeQues {
     }
     static void printleft(TreeNode node , ArrayList<Integer> ans){
         if(node==null) return;
-        if(node.left==null && node.right==null) return ;
+        if(node.left==null && node.right==null)
+            return ;
 
         ans.add(node.data);
 
@@ -459,7 +448,6 @@ public class TreeQues {
         }
 
         printleaf(node.left,ans);
-
 
         printleaf(node.right,ans);
 

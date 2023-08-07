@@ -262,10 +262,8 @@ public class ArrayQues {
 
     //Merge Overlapping Intervals
     public static int[][] mergeOverlapping(int[][] intervals) {
-
         if (intervals.length <= 1)
             return intervals;
-
         // Sort by ascending starting point
         Arrays.sort(intervals, Comparator.comparingInt(i -> i[0]));
 

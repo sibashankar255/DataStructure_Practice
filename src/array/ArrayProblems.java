@@ -135,7 +135,6 @@ public class ArrayProblems {
             }
             hashSet.add(arr[i]);
         }
-
         long expected_sum = (long) (n*(n+1))/2;
         long actual_sum = 0;
         for (int i=0; i<n; i++){
