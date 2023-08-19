@@ -138,7 +138,6 @@ public class StackQues {
             maxAns=Math.max(maxAns,curr);
         }
         return maxAns;
-
     }
     public static int[] pSmaller(int[] A) {
         //ArrayList<Integer> prevSmaller = new ArrayList<Integer>();
