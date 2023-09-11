@@ -6,6 +6,9 @@ import java.util.Set;
 public class Subsequence {
     public static void main(String[] args) {
 
+        String s ="geeksofgeeks";
+        System.out.println(lengthOfLongestSubstring(s));
+
     }
 
     //Longest Common Subsequence
@@ -88,21 +91,24 @@ public class Subsequence {
     }
 
     //Longest Substring Without Repeating Characters
-    public int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) {
         int left=0,right=0;
-        Set<Character> seen = new HashSet<>();
+        Set<Character> set = new HashSet<>();
+        StringBuilder stringBuilder = new StringBuilder();
         int max=0;
         while (right<s.length()){
             char c = s.charAt(right);
-            if (seen.add(c)){
+
+            if (set.add(c)){
                 max = Math.max(right-left+1,max);
                 right++;
+
             }else {
                 while (s.charAt(left) != c){
-                    seen.remove(s.charAt(left));
+                    set.remove(s.charAt(left));
                     left++;
                 }
-                seen.remove(c);
+                set.remove(c);
                 left++;
             }
         }
