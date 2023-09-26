@@ -1,8 +1,6 @@
-package graph.dfs;
+package graph.apna.dfs;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class ClientEdge {
     public static void main(String[] args) {

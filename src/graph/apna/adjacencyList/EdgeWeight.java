@@ -1,4 +1,4 @@
-package graph.adjacencyList;
+package graph.apna.adjacencyList;
 
 public class EdgeWeight {
     int src;

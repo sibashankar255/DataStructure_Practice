@@ -1,4 +1,4 @@
-package graph.bfs;
+package graph.apna.bfs;
 
 public class Edge {
     int src;

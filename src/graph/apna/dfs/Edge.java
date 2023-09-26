@@ -1,4 +1,4 @@
-package graph.dfs;
+package graph.apna.dfs;
 
 public class Edge {
     int src;

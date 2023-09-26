@@ -1,5 +1,8 @@
 package linkedList;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LinkedListAdv {
     public static void main(String[] args) {
         Node node1 = new Node(10);
@@ -171,6 +174,122 @@ public class LinkedListAdv {
 
 
     //given a linked list where every node has a random pointer along with next pointer.
+    public RandomListNode copyRandomList(RandomListNode head) {
+        if (head == null) {
+            return null;
+        }
+
+        // Step 1: Create a copy of each node and map original nodes to copied nodes
+        Map<RandomListNode, RandomListNode> nodeMap = new HashMap<>();
+        RandomListNode current = head;
+        while (current != null) {
+            nodeMap.put(current, new RandomListNode(current.label));
+            current = current.next;
+        }
+
+        // Step 2: Set the next and random pointers of copied nodes
+        current = head;
+        while (current != null) {
+            RandomListNode copiedRandomListNode = nodeMap.get(current);
+            copiedRandomListNode.next = nodeMap.get(current.next);
+            copiedRandomListNode.random = nodeMap.get(current.random);
+            current = current.next;
+        }
+
+        // Step 3: Return the head of the copied list
+        return nodeMap.get(head);
+    }
     // create a deep copy of this list
+
+
+
+    // Reverse Linked List II
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        // create a dummy node to mark the head of this list
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        // make markers for currentNode and for the node before reversing
+        ListNode leftPre = dummy;
+        ListNode currNode = head;
+
+        for (int i = 0; i < left - 1; i++) {
+            leftPre = leftPre.next;
+            currNode = currNode.next;
+        }
+
+        // make a marker to node where we start reversing
+        ListNode subListHead = currNode;
+
+        ListNode preNode = null;
+        for (int i = 0; i <= right - left; i++) {
+            ListNode nextNode = currNode.next;
+            currNode.next = preNode;
+            preNode = currNode;
+            currNode = nextNode;
+        }
+
+        // Join the pieces
+        leftPre.next = preNode;
+        subListHead.next = currNode;
+
+        return dummy.next;
+    }
+
+
+
+    //Remove Nth Node From End of List
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null) {
+            return null;
+        }
+
+        // Create a dummy node to handle edge cases
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode first = dummy;
+        ListNode second = dummy;
+
+        // Move the second pointer B nodes ahead
+        for (int i = 1; i <= n + 1; i++) {
+            if (second == null) {
+                return head.next;
+            }
+            second = second.next;
+        }
+
+        // Move the first and second pointers simultaneously until the second pointer reaches the end
+        while (second != null) {
+            first = first.next;
+            second = second.next;
+        }
+
+        // Remove the Bth node from the end
+        first.next = first.next.next;
+
+        return dummy.next;
+    }
+
+
+    //Remove Duplicates from Sorted List
+    public ListNode deleteDuplicates(ListNode A) {
+        ListNode prev = A;
+        ListNode temp = prev.next;
+
+        while(temp != null){
+            if(temp.val ==prev.val){
+                temp=temp.next;
+                continue;
+            }
+            //prev.next=temp;
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=null;
+        return A;
+    }
+
+
 
 }

@@ -1,5 +1,8 @@
 package BitManipulation;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class Bit {
     public static void main(String[] args) {
         int[] a={1,1,2,5,2,3,3,4};
@@ -75,6 +78,22 @@ public class Bit {
 
     //no of digits in a number(n)
     // do the & operation n&(n-1) till its 0
+
+
+    //Find the Duplicate Number
+    public int findDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+
+        int ans=0;
+        for (int i=0; i<nums.length; i++){
+            if (set.contains(nums[i])){
+                ans= nums[i];
+            }else {
+                set.add(nums[i]);
+            }
+        }
+        return ans;
+    }
 
 
 

@@ -79,7 +79,6 @@ public class MCM {
             return 0;
         }
 
-
         int min =Integer.MAX_VALUE;
         for (int k=i; k<=j-1; k++){
             int temp = 1+ palindromePartitioning(s,i,k)+palindromePartitioning(s,k+1,j);
@@ -129,7 +128,6 @@ public class MCM {
         if (dp[i][j] != -1){
             return dp[i][j];
         }
-
 
         int min =Integer.MAX_VALUE;
         for (int k=i; k<=j-1; k++){

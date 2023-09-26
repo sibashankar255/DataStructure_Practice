@@ -26,6 +26,7 @@ public class TreeQues2 {
 
     //valid Binary Search Tree
     public static boolean validBST(TreeNode root){
+
         return isBst(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
     }
     public static boolean isBst(TreeNode node, int min, int max){

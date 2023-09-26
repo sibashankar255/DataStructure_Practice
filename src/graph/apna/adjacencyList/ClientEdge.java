@@ -1,6 +1,6 @@
-package graph.adjacencyList;
+package graph.apna.adjacencyList;
 
-import graph.bfs.Edge;
+import graph.apna.bfs.Edge;
 
 import java.util.ArrayList;
 
