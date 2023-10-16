@@ -89,4 +89,11 @@ public class Sorting {
     }
 
 
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        if(m==0){
+
+        }
+    }
+
+
 }
