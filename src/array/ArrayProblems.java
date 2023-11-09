@@ -1,9 +1,6 @@
 package array;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class ArrayProblems {
     public static void main(String[] args) {
@@ -64,6 +61,8 @@ public class ArrayProblems {
     //4. contains duplicate
     public static boolean duplicate(int[] arr){
         HashSet<Integer> hashSet = new HashSet<>();
+
+
 
         for (int i=0; i<arr.length; i++){
             if (hashSet.contains(arr[i])){

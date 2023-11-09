@@ -57,7 +57,6 @@ public class KnapsackProblem {
             sum+=nums[i];
         }
 
-
         if (sum%2!=0){
             return false;
         }else {
@@ -103,17 +102,14 @@ public class KnapsackProblem {
         int sum=0;
         for (int i=0; i<nums.length; i++){
             sum+=nums[i];
+
         }
         ArrayList<Integer> arrayList = subsetSumdiff(nums,sum);
-
         int min=Integer.MAX_VALUE;
         for (int i=0; i<arrayList.size(); i++){
             min = Math.min(min, sum-2*arrayList.get(i));
         }
-
         return min;
-
-
     }
 
     public static ArrayList<Integer> subsetSumdiff(int arr[], int sum){
@@ -142,7 +138,6 @@ public class KnapsackProblem {
         }
 
         ArrayList<Integer> arrayList = new ArrayList<>();
-
         for (int i=0; i<n+1; i++){
             for (int j=0; j<(sum+1)/2; j++){
                 if (i==n+1 && dp[i][j]==true){
@@ -150,9 +145,7 @@ public class KnapsackProblem {
                 }
             }
         }
-
         return arrayList;
-
     }
 
     static int min_diff(int arr[], int n){

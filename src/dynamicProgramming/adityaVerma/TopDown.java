@@ -27,7 +27,8 @@ public class TopDown {
                 } else {
                     dp[i][j] = dp[i - 1][j];
                 }
-            }}
+            }
+        }
 
         return dp[n][w];
     }
