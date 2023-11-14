@@ -1,4 +1,4 @@
-package DailyPractice;
+package DailyPractice.linkedList;
 
 public class ListNode {
     int val;
@@ -8,7 +8,6 @@ public class ListNode {
     }
 
     ListNode(int val) {
-
         this.val = val;
     }
 

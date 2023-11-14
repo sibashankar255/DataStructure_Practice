@@ -5,10 +5,10 @@ public class LInkedListAdv2 {
         //1 -> 2 -> 1 -> 1 -> 1 -> 2 -> 3 -> 2 -> null
         Node node1 = new Node(1);
 
-        Node node2 = new Node(2);
+        Node node2 = new Node(0);
         node1.next = node2;
 
-        Node node3 = new Node(2);
+        Node node3 = new Node(0);
         node2.next = node3;
 
 
