@@ -74,7 +74,6 @@ public class TreeQues2 {
 
     //Sorted Array To Balanced BST
     public TreeNode sortedArrayToBST(final int[] A) {
-
         return buildBST(A, 0, A.length-1);
     }
     public static TreeNode buildBST(int[] A, int start, int end){
@@ -243,22 +242,28 @@ public class TreeQues2 {
         return -1;
     }
 
-//    //Recover Binary Search Tree
-//    public static ArrayList<Integer> recoverBST(TreeNode root){
-//        ArrayList<Integer> inorder =inorderTraversal(root);
-//
-//        ArrayList<Integer> twoValues = new ArrayList<>();
-//        int prev =0;
-//        int first =0;
-//        int last =0;
-//
-//        while (first<last){
-//
-//        }
-//
-//
-//
-//    }
+    //Recover Binary Search Tree
+    TreeNode first=null,second=null;
+    public void recoverTree(TreeNode root) {
+        if(root==null)
+            return ;
+        inorder(root);
+        int temp=first.data;
+        first.data=second.data;
+        second.data=temp;
+    }
+    void inorder(TreeNode root){
+        if(root==null)
+            return ;
+        inorder(root.left);
+        if(prev!=null && root.data<prev.data){
+            if(first==null)
+                first=prev;
+            second=root;
+        }
+        prev=root;
+        inorder(root.right);
+    }
 
 
     public static ArrayList<Integer> inorderTraversal(TreeNode root){
@@ -276,7 +281,9 @@ public class TreeQues2 {
                 curr= node.right;
             }
         }
+
         return inorder;
+
     }
 
     // Invert the Binary Tree
@@ -307,7 +314,6 @@ public class TreeQues2 {
 
         return ans;
     }
-
 //    private static void checkEqualPartition(TreeNode root, int target, int[] ans) {
 //        if (root==null){
 //            return;
@@ -374,7 +380,7 @@ public class TreeQues2 {
         int rightSum = checkPartition(node.right, totalSum);
 
         // If the current node is the root and has two non-empty subtrees with equal sums, it's a valid partition
-        if (node != node && leftSum == totalSum / 2 && rightSum == totalSum / 2) {
+        if (node != node && leftSum == totalSum/2 && rightSum == totalSum/2) {
             hasEqualPartition = true;
         }
 
@@ -403,6 +409,7 @@ public class TreeQues2 {
     //Symmetric Binary Tree
 
     public static int symmetric(TreeNode root){
+
         return (root==null || isSymmetric(root.left,root.right)) ? 1:0;
     }
 

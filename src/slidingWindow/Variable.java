@@ -6,9 +6,65 @@ import java.util.Map;
 import java.util.Set;
 
 public class Variable {
+
+    //Subarray Sum Equals K
+    public int subarraySum(int[] nums, int K) {
+        int count = 0;
+        int sum = 0;
+        // Store the cumulative sum and its frequency in a HashMap
+        HashMap<Integer, Integer> sumFrequency = new HashMap<>();
+        sumFrequency.put(0, 1); // To consider subarrays starting from index 0
+
+        for (int num : nums) {
+            sum += num;
+            int diff = sum - K;
+
+            if (sumFrequency.containsKey(diff)) {
+                // If a cumulative sum (sum - K) exists in the HashMap,
+                // it means there are subarrays with the desired sum
+                count += sumFrequency.get(diff);
+            }
+
+            // Update the frequency of the current cumulative sum
+            sumFrequency.put(sum, sumFrequency.getOrDefault(sum, 0) + 1);
+        }
+
+        return count;
+
+    }
+
+
     //Largest Subarray of sum K
+    static int lenOfLongSubArray(int A[], int N, int K) {
+        int i = 0, j = 0, sum = 0;
+        int maxLen = Integer.MIN_VALUE;
+
+        while (j < N) {
+            sum += A[j];
+            if (sum < K) {
+                j++;
+            }
+            else if (sum == K) {
+                maxLen = Math.max(maxLen, j-i+1);
+                j++;
+            }
+            else if (sum > K) {
+                while (sum > K) {
+                    sum -= A[i];
+                    i++;
+                }
+                if(sum == K){
+                    maxLen = Math.max(maxLen, j-i+1);
+                }
+                j++;
+            }
+        }
+        return maxLen;
+    }
 
 
+
+    //Longest Substring Without repeating character
     public int lengthOfLongestSubstring(String s) {
         int left=0,right=0;
         Set<Character> set = new HashSet<>();
@@ -54,11 +110,12 @@ public class Variable {
                 }
                 start++;
             }
-
             maxLength = Math.max(end - start + 1, maxLength);
             end++;
         }
-
         return maxLength;
     }
+
+    //Minimum Window Substring
+
 }

@@ -8,7 +8,7 @@ public class Knapsack {
         /*
      //subset sum
     //equal sum partition
-    //count of subset sum
+    //count of subset sum b
     //minimum subset sum
     //number of subset with given difference
     //target sum

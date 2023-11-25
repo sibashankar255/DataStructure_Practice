@@ -23,6 +23,12 @@ public class TreeQues {
         treeNode3.left=treeNode6;
         treeNode3.right=treeNode7;
 
+
+        ArrayList<Integer> arrayList = preorderTraversal(treeNode1);
+        for (int k : arrayList){
+            System.out.println(k);
+        }
+
         //System.out.println(inorderTraversal(treeNode1).toString());
 //        int[] A = {4,2,5,1,6,3,7};
 //        int[] B ={1,2,4,5,3,6,7};
@@ -40,10 +46,11 @@ public class TreeQues {
 //        arrayList = boundaryTraversal(treeNode1);
 //        System.out.println(arrayList.toString());
 
-        System.out.println(diameter(treeNode1));
+//        System.out.println(diameter(treeNode1));
 
     }
 
+    //40 20 50 10 60 30 70
     public static ArrayList<Integer> inorderTraversal(TreeNode root){
         ArrayList<Integer> arrayList = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -61,6 +68,8 @@ public class TreeQues {
         }
         return arrayList;
     }
+
+    //10 20 40 50 30 60 70
     public static ArrayList<Integer> preorderTraversal(TreeNode root){
         ArrayList<Integer> result = new ArrayList<Integer>();
         Stack<TreeNode> stack = new Stack<>();
@@ -77,13 +86,14 @@ public class TreeQues {
         return result;
     }
 
-    public ArrayList<Integer> postorderTraversal(TreeNode A) {
+
+    //40 50 20 60 70 30 10
+    public static ArrayList<Integer> postorderTraversal(TreeNode A) {
         Stack<TreeNode> st = new Stack<>();
         st.push(A);
         ArrayList<Integer> ans = new ArrayList<>();
         while(st.size()>0){
-            TreeNode curr = st.peek();
-            st.pop();
+            TreeNode curr = st.pop();
             ans.add(curr.data);
             if(curr.left!=null){
                 st.push(curr.left);
@@ -97,6 +107,7 @@ public class TreeQues {
         for(int i=ans.size()-1;i>=0;i--){
             ret.add(ans.get(i));
         }
+        Collections.reverse(ans);
         return ret;
     }
 
@@ -149,12 +160,13 @@ public class TreeQues {
 
 
     // Level Order
-    public ArrayList<ArrayList<Integer>> levelOrderTraversal(TreeNode A) {
+    public static ArrayList<ArrayList<Integer>> levelOrderTraversal(TreeNode A) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
         if (A == null) {
             return result;
         }
+        Stack<ArrayList<Integer>> stack = new Stack<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(A);
 
@@ -174,7 +186,13 @@ public class TreeQues {
                     queue.offer(node.right);
                 }
             }
-            result.add(currentLevel);
+            stack.push(currentLevel);
+            double avg =currentLevel.stream()
+                    .mapToInt(Integer::intValue)
+                    .average().getAsDouble();
+        }
+        while (!stack.isEmpty()){
+            result.add(stack.pop());
         }
         return result;
     }
@@ -493,6 +511,11 @@ public class TreeQues {
 
         max_path_sum = Math.max(max_path_sum,left+right+node.data);
         return Math.max(left,right)+node.data;
+    }
+
+    public static int largest(List<Integer> list){
+        List<Integer> result= new ArrayList<>();
+        return Collections.max(list);
     }
 
 
