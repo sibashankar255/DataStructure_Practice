@@ -304,7 +304,7 @@ Problem reduces to find no of subsets with given sum**
              if(x == 0)
                  count++;
 
-        return (int)(Math.pow(2,count)) *countSubsetSum(nums,sum);
+        return (int)(Math.pow(2,count)) * countSubsetSum(nums,sum);
     }
 
     public int findTargetSumWaysOther(int[] nums, int target) {
