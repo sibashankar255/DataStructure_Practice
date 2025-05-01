@@ -127,6 +127,47 @@ public class Medium {
     }
 
     //Next Permutation
+    public void nextPermutation(int[] nums) {
+        int idx1 = -1;
+        int idx2 = -1;
+
+        for(int i= nums.length-2; i>=0; i--){
+            if(nums[i] < nums[i+1]){
+                idx1=i;
+                break;
+            }
+        }
+
+        if(idx1==-1){
+            reverse(nums,0);
+        }else{
+            for(int i=nums.length-1; i>=0; i--){
+                if(nums[i]>nums[idx1]){
+                    idx2=i;
+                    break;
+                }
+            }
+
+            swap(nums, idx1, idx2);
+
+            reverse(nums, idx1+1);
+        }
+    }
+    // 1 5 8 5 7 6 4 3 1
+    private static void reverse(int[] nums, int start){
+        int length = nums.length-1;
+
+        while(start<length){
+            swap(nums, start,length);
+            start++;
+            length--;
+        }
+    }
+    private static void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
 
     //Leaders in an Array problem
     public static ArrayList<Integer>

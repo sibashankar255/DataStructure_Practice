@@ -62,8 +62,6 @@ public class ArrayProblems {
     public static boolean duplicate(int[] arr){
         HashSet<Integer> hashSet = new HashSet<>();
 
-
-
         for (int i=0; i<arr.length; i++){
             if (hashSet.contains(arr[i])){
                 return true;

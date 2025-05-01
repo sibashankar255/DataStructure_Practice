@@ -22,8 +22,8 @@ public class Easy {
 
     //Second the Largest Element in an Array
     public static int secondLargest(int[] arr){
-        int max=arr[0];
-        int secondMax = arr[0];
+        int max=Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
 
         for (int i=1; i<arr.length; i++){
             if (arr[i]>max){
@@ -35,6 +35,11 @@ public class Easy {
     }
 
     //Check if the array is sorted
+    // check if (i+1)th element is greater than ith element then its sorted
+    // if the array is sorted then only once (i+1)th element is greater than ith element
+    // if it is 0th time rotated then all the (i+1)th element will be grater than ith element
+    // take a variable count=0 and keep on increasing the count if (i+1)th element is greater than ith element
+    // if the count is less than 1 then return true
     public static boolean isSorted(int[] arr){
         int count=0 ;
         for(int i=0 ;i<arr.length;i++){
@@ -45,33 +50,37 @@ public class Easy {
     }
 
     //Remove duplicates from Sorted array
+    // take a pointer =0(first index of the array)
+    // check if the ith element is not equal to (i+1)th element
+    // than in the array[pointer++]= array[i+1]
     public int removeDuplicates(int[] nums) {
-        int ptr=1;
-        for(int i=0; i< nums.length-1; i++){
-            if(nums[i] != nums[i+1]){
-                nums[ptr] = nums[i+1];
-                ptr++;
+        int k=1;
+        for(int i=1; i< nums.length-1; i++){
+            if(nums[i] != nums[i-1]){
+                nums[k] = nums[i]; // Replace the k-th element with the i-th element (a new unique element).
+                k++; // Increment the count of unique elements.
             }
         }
-        return ptr;
+        // then put rest of the element as zero and return the array
+        return k;
     }
 
     //Left Rotate an array by one place
     public void rotate(int[] A, int B) {
         int n = A.length;
-        B=B%n;
+        B=B%n; // if the number of times rotation is greater than the length then take modulo
         reverse(A, 0, n-1);
         reverse(A,0, B-1);
         reverse(A,B,n-1);
     }
-    public int[] reverse(int[] A, int s, int e){
+    public int[] reverse(int[] A, int start, int end){
         int k=0;
-        while(s<e){
-            k=A[s];
-            A[s]=A[e];
-            A[e]=k;
-            s++;
-            e--;
+        while(start<end){
+            k=A[start];
+            A[start]=A[end];
+            A[end]=k;
+            start++;
+            end--;
         }
         return A;
     }
@@ -175,20 +184,21 @@ public class Easy {
             // if sum > k, reduce the subarray from left
             // until sum becomes less or equal to k:
             while (left <= right && sum > k) {
-                sum -= a[left];
+                sum = sum - a[left];
                 left++;
             }
 
-            // if sum = k, update the maxLen i.e. answer:
+            // if sum = k, update the maxLen i.e. answer
             if (sum == k) {
                 maxLen = Math.max(maxLen, right - left + 1);
             }
 
             // Move forward thw right pointer:
             right++;
-            if (right < n) sum += a[right];
+            if (right < n){
+                sum = sum + a[right];
+            }
         }
-
         return maxLen;
     }
 
